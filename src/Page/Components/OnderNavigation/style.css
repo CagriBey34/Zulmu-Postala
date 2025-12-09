@@ -1,0 +1,163 @@
+/* Genel Ayarlar */
+.onder-container {
+  display: flex;
+  min-height: 100vh; /* height yerine min-height daha güvenlidir */
+  background-color: #f5f7fa;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden; /* Taşmaları engeller */
+}
+
+/* --- SOL MENÜ (NAV) --- */
+.onder-nav {
+  display: flex;
+  flex-direction: column;
+  width: 280px; /* Sabit genişlik daha stabil durur */
+  background-color: #fff; /* Mobilde ayırt edilmesi için arka plan */
+  border-right: 1px solid #e0e0e0;
+  padding-top: 50px;
+  flex-shrink: 0; /* İçeriğin menüyü ezmesini engeller */
+}
+
+.onder-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.onder-nav li {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.onder-nav button {
+  width: 100%;
+  text-align: right; /* Masaüstünde sağa dayalı */
+  padding: 15px 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px; /* 22px çok büyüktü, 18px daha ideal */
+  transition: all 0.3s ease;
+  border-right: 4px solid transparent;
+  color: #555;
+  font-weight: 500;
+}
+
+.onder-nav button:hover {
+  background-color: #f0f4f8;
+  color: #D12A2C;
+}
+
+.onder-nav button.active {
+  background-color: #fff0f0; /* Hafif kırmızımsı arka plan */
+  color: #D12A2C;
+  border-right-color: #D12A2C;
+  font-weight: 700;
+}
+
+/* --- SAĞ İÇERİK (CONTENT) --- */
+.onder-content {
+  flex: 1;
+  padding: 40px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Hafif gölge */
+  overflow-y: auto;
+}
+
+/* İçerik Tipografisi */
+.onder-content h2 {
+  color: #D12A2C;
+  margin-bottom: 20px;
+  font-size: 28px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.onder-content p, .onder-content ul {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* --- RESPONSIVE TASARIM (Mobil ve Tablet) --- */
+
+@media (max-width: 900px) {
+  .onder-container {
+      flex-direction: column; /* Yan yana değil, alt alta diz */
+      height: auto;
+  }
+
+  /* Menü Tasarımı Değişiyor */
+  .onder-nav {
+      width: 100%;
+      height: auto;
+      padding: 10px 0;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+      position: sticky; /* Menü üstte sabit kalsın istersen */
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .onder-nav ul {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto; /* Yatay kaydırma açıldı */
+      white-space: nowrap; /* Satır başı yapmayı engelle */
+      padding: 0 10px;
+      /* Scroll barı gizlemek için (isteğe bağlı) */
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
+  
+  .onder-nav ul::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+  }
+
+  .onder-nav li {
+      width: auto; /* Genişlik içeriğe göre olsun */
+      margin-bottom: 0;
+      margin-right: 10px;
+  }
+
+  .onder-nav button {
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 14px; /* Mobilde fontu küçült */
+      border-right: none; /* Sağdaki çizgiyi kaldır */
+      border-bottom: 3px solid transparent; /* Altına çizgi koy */
+      border-radius: 20px; /* Mobilde buton gibi dursun */
+  }
+
+  .onder-nav button.active {
+      border-right-color: transparent;
+      border-bottom-color: #D12A2C; /* Aktif çizgi altta */
+      background-color: #D12A2C;
+      color: white;
+  }
+
+  /* İçerik Alanı Düzenlemesi */
+  .onder-content {
+      margin: 10px;
+      padding: 20px;
+      box-shadow: none; /* Mobilde gölgeyi kaldırabiliriz */
+  }
+}
+
+/* Çok Küçük Ekranlar (Telefonlar) */
+@media (max-width: 480px) {
+  .onder-nav button {
+      font-size: 13px;
+      padding: 8px 12px;
+  }
+  
+  .onder-content {
+      padding: 15px;
+      margin: 0;
+      border-radius: 0;
+  }
+}

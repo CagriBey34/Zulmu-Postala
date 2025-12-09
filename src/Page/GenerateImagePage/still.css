@@ -1,0 +1,351 @@
+/* =========================================
+   1. ANA KAPLAYICI VE GENEL AYARLAR
+   ========================================= */
+   .ser-containerr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* İçerik çok yayılmasın */
+    margin: 0 auto;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    /* Hafif desenli modern arka plan */
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+/* Arka planın yazıları bozmaması için beyaz bir katman */
+.ser-containerr::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);
+    z-index: -1; /* En arkada dursun */
+}
+
+/* =========================================
+   2. BAŞLIK VE METİN ALANLARI
+   ========================================= */
+.header-section {
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.ser-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #222;
+    margin: 0;
+    letter-spacing: -1px;
+
+}
+
+.title-underline {
+    width: 80px;
+    height: 6px;
+    background-color: #D30000;
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+.sertifika-desc {
+    width: 100%;
+    max-width: 750px;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.sertifika-desc p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: start;
+}
+
+/* Kırmızı vurgulu alanlar */
+.highlight-text {
+    background-color: rgba(211, 0, 0, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(211, 0, 0, 0.1);
+    color: #333 !important;
+}
+
+.hashtag {
+    color: #D30000;
+    font-weight: 800;
+}
+
+/* =========================================
+   3. MODERN ARAMA FORMU (INPUT & BUTON)
+   ========================================= */
+.search-form {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Input Alanı */
+.search-input {
+    width: 100%;
+    padding: 22px 30px;
+    padding-right: 180px; /* Butonun üstüne binmemesi için sağ boşluk */
+    font-size: 17px;
+    color: #333;
+    background-color: white;
+    border: 2px solid transparent;
+    border-radius: 60px; /* Tam yuvarlak */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    border-color: rgba(211, 0, 0, 0.3);
+    box-shadow: 0 15px 40px rgba(211, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Buton */
+.search-button {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    
+    background: linear-gradient(135deg, #D30000 0%, #b30000 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(211, 0, 0, 0.4);
+    background: linear-gradient(135deg, #e60000 0%, #c40000 100%);
+}
+
+.search-button:active {
+    transform: scale(0.95);
+}
+
+/* =========================================
+   4. LOADING (YÜKLENİYOR) EKRANI
+   ========================================= */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.8);
+    animation: fadeIn 0.5s ease;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #D30000, #ff4757);
+    border-radius: 10px;
+    transition: width 0.4s ease-out;
+    box-shadow: 0 0 15px rgba(211, 0, 0, 0.4);
+}
+
+.loading-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   5. SONUÇ EKRANI VE RESİM KARTLARI
+   ========================================= */
+.images-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    animation: fadeIn 0.8s ease-out;
+    margin-top: 30px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 550px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.certificate-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: block;
+}
+
+/* Sonuç Ekranı Butonları */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 550px;
+}
+
+.button {
+    flex: 1;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #D30000;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(211, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #b30000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(211, 0, 0, 0.4);
+}
+
+.download-button {
+    background-color: #27ae60;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.download-button:hover {
+    background-color: #219150;
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+}
+
+.button-icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.error-container {
+    background-color: #fff5f5;
+    color: #D30000;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 1px solid #ffcccc;
+    margin-top: 20px;
+}
+
+/* =========================================
+   6. RESPONSIVE / MOBİL AYARLARI
+   ========================================= */
+@media (max-width: 768px) {
+    .ser-containerr {
+        padding: 40px 15px;
+        background-size: 10px 10px; /* Mobilde desen daha küçük */
+    }
+
+    .ser-title {
+        font-size: 30px;
+    }
+
+    .sertifika-desc p {
+        font-size: 15px;
+        text-align: left; /* Mobilde okuma kolaylığı için sola yasla */
+    }
+
+    /* MOBİL FORM DÜZENİ: Butonu aşağı al */
+    .input-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-input {
+        padding: 18px 20px;
+        padding-right: 20px; /* Mobilde buton altta olduğu için boşluğa gerek yok */
+        text-align: center;
+    }
+
+    .search-button {
+        position: relative; /* Absolute iptal */
+        width: 100%; /* Tam genişlik */
+        right: auto;
+        top: auto;
+        bottom: auto;
+        padding: 18px;
+        border-radius: 50px;
+    }
+    
+    .button-container {
+        flex-direction: column;
+    }
+    
+    .button {
+        width: 100%;
+    }
+}
